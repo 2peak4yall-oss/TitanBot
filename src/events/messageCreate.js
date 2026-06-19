@@ -113,5 +113,23 @@ async function handleLeveling(message, client) {
     logger.error('Error handling leveling for message:', error);
   }
 }
+if (interaction.commandName === "sessions") {
+  const channelId = "1516787635392090254";
 
+  try {
+    const channel = await interaction.client.channels.fetch(channelId);
+
+    if (!channel || !channel.isTextBased()) {
+      return interaction.reply({ content: "Salon invalide.", ephemeral: true });
+    }
+
+    await channel.send("Ton message ici");
+
+    await interaction.reply({ content: "Session envoyée !", ephemeral: true });
+
+  } catch (err) {
+    console.error(err);
+    await interaction.reply({ content: "Erreur.", ephemeral: true });
+  }
+}
 
